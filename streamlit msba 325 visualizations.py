@@ -68,7 +68,7 @@ fig1 = px.box(
     filtered_df,
     x="CreditorType", y="Value (Millions)", color="CreditorType",
     title="Value Distribution by Creditor Type",
-    labels={"IndicatorDescription": "Creditor Type", "Value (Millions)": "Value (in Millions USD)"}
+    labels={"IndicatorDescription": "Creditor Type","Year":"Year", "Value (Millions)": "Value (in Millions USD)"}
 )
 
 # Visualization 2: Line Chart of Sum of Debt Across Years
@@ -88,6 +88,7 @@ with st.container():
 with st.container():
     st.subheader("Debt Trends Across Years by Debt Type")
     st.plotly_chart(fig2, use_container_width=True)
+
 
 
 
