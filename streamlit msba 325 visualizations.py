@@ -1,10 +1,10 @@
-import streamlit as st
+aimport streamlit as st
 import plotly.express as px
 import pandas as pd
 import json
 
 # Load Data
-df_externaldebt = pd.read_csv("externaldebt.csv")
+df_externaldebt = pd.read_csv("externaldebt_enhanced.csv")
 
 #Convert Value column to Millions
 df_externaldebt['Value (Millions)'] = df_externaldebt['Value'] / 1e6
@@ -92,3 +92,4 @@ with col2:
     **Insight:** This trend view helps reveal whether some categories are consistently 
     growing, stable, or declining over time.
     """)
+
