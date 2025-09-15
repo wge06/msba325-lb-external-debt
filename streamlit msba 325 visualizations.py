@@ -11,23 +11,6 @@ df_externaldebt['Value (Millions)'] = df_externaldebt['Value'] / 1e6
 
 indicator_codes = df_externaldebt['Indicator Code'].unique()
 
-def get_indicator_description(code):
-    url = f"https://api.worldbank.org/v2/indicator/{code}?format=json"
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        if len(data) > 1 and 'name' in data[1][0]:
-            return data[1][0]['name']
-    return "Description not found"
-
-df_new = pd.DataFrame({
-    'Indicator Code': indicator_codes})
-
-df_new["IndicatorDescription"] = df_new["Indicator Code"].apply(get_indicator_description)
-
-#Add an Indicator Description to df_externaldebt by looking up descriptions for each unique indicator code from df_new
-df_externaldebt = df_externaldebt.merge(df_new, on="Indicator Code", how="left")
-
 df_externaldebt['Year'] = df_externaldebt['refPeriod'].astype(int)
 
 years = sorted(df_externaldebt["Year"].unique())
