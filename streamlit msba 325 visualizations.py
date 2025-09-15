@@ -66,7 +66,7 @@ pivot_df['Share (%)'] = (pivot_df['Value (Millions)'] / pivot_df['TotalPerYear']
 # Visualization 1: Stacked Bar Chart Across Years by Category
 fig1 = px.box(
     filtered_df,
-    x="IndicatorDescription", y="Value (Millions)", color="IndicatorDescription",
+    x="CreditorType", y="Value (Millions)", color="CreditorType",
     title="Value Distribution by Creditor Type",
     labels={"IndicatorDescription": "Creditor Type", "Value (Millions)": "Value (in Millions USD)"}
 )
@@ -82,12 +82,13 @@ fig2 = px.line(
 # Layout on Streamlit Page
 
 with st.container():
-    st.subheader("Category Distributions")
+    st.subheader("Debt Distributions by Creditor")
     st.plotly_chart(fig1, use_container_width=True)
 
 with st.container():
-    st.subheader("Trends Across Years")
+    st.subheader("Debt Trends Across Years by Debt Type")
     st.plotly_chart(fig2, use_container_width=True)
+
 
 
 
