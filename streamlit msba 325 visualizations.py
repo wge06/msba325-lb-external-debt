@@ -35,7 +35,7 @@ selected_cats = st.multiselect(
 )
 
 # 2. Year range slider
-year_min, year_max = int(years.min()), int(years.max())
+year_min, year_max = int(df['Years'].min()), int(df['Years'].max())
 selected_years = st.slider(
     "Select Year Range:", min_value=year_min, max_value=year_max,
     value=(year_min, year_max)
@@ -92,6 +92,7 @@ with col2:
     **Insight:** This trend view helps reveal whether some categories are consistently 
     growing, stable, or declining over time.
     """)
+
 
 
 
