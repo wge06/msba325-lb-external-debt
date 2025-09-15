@@ -36,21 +36,21 @@ filtered_df['CreditorType'] = filtered_df['IndicatorDescription'].replace(select
 st.sidebar.header("🔎 Filters")
 # 1. Multi-select categories
 selected_cats = st.sidebar.multiselect(
-    "Filter by Creditor Type:", options=df_externaldebt['IndicatorDescription'], default=df_externaldebt['IndicatorDescription'].unique()
+    "Filter by Creditor Type:", options=filtered_df['CreditorType'], default=filtered_df['CreditorType'].unique()
 )
 
 # 2. Year range slider
-year_min, year_max = int(df_externaldebt['Year'].min()), int(df_externaldebt['Year'].max())
+year_min, year_max = int(filtered_df['Year'].min()), int(filtered_df['Year'].max())
 selected_years = st.sidebar.slider(
     "Select Year Range:", min_value=year_min, max_value=year_max,
     value=(year_min, year_max)
 )
 
 # Filter Data
-filtered_df = df_externaldebt[
-    (df_externaldebt["IndicatorDescription"].isin(selected_cats)) &
-    (df_externaldebt["Year"] >= selected_years[0]) &
-    (df_externaldebt["Year"] <= selected_years[1])
+filtered_df = filtered_df[
+    (filtered_df["CreditorType"].isin(selected_cats)) &
+    (filtered_df["Year"] >= selected_years[0]) &
+    (filtered_df["Year"] <= selected_years[1])
 ]
 
 # Pivot and normalize values per year
@@ -88,6 +88,7 @@ with st.container():
 with st.container():
     st.subheader("Trends Across Years")
     st.plotly_chart(fig2, use_container_width=True)
+
 
 
 
