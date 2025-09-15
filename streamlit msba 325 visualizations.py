@@ -71,6 +71,10 @@ fig1 = px.box(
     labels={"IndicatorDescription": "Creditor Type","Year":"Year", "Value (Millions)": "Value (in Millions USD)"}
 )
 
+fig1.update_traces(
+    hovertemplate='Creditor: %{x}<br>Value: %{y:.2f}M'
+)
+
 # Visualization 2: Line Chart of Sum of Debt Across Years
 fig2 = px.line(
     pivot_df,
@@ -88,6 +92,7 @@ with st.container():
 with st.container():
     st.subheader("Debt Trends Across Years by Debt Type")
     st.plotly_chart(fig2, use_container_width=True)
+
 
 
 
