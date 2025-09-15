@@ -36,7 +36,7 @@ filtered_df['CreditorType'] = filtered_df['IndicatorDescription'].replace(select
 st.sidebar.header("🔎 Filters")
 # 1. Multi-select categories
 selected_cats = st.sidebar.multiselect(
-    "Filter by Creditor Type:", options=filtered_df['CreditorType'], default=filtered_df['CreditorType'].unique()
+    "Filter by Creditor Type:", options=filtered_df['CreditorType'].unique(), default=filtered_df['CreditorType'].unique()
 )
 
 # 2. Year range slider
@@ -88,6 +88,7 @@ with st.container():
 with st.container():
     st.subheader("Trends Across Years")
     st.plotly_chart(fig2, use_container_width=True)
+
 
 
 
