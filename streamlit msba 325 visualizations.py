@@ -15,6 +15,7 @@ df_externaldebt['Year'] = df_externaldebt['refPeriod'].astype(int)
 
 years = sorted(df_externaldebt["Year"].unique())
 
+# Define and shorten indicator names
 selected_indicators = {
     'PPG, official creditors (NFL, US$)': 'Official Creditors (PPG)',
     'PPG, bonds (NFL, current US$)': 'Bonds (PPG)',
@@ -25,6 +26,10 @@ selected_indicators = {
     'PPG, other private creditors (NFL, current US$)': 'Other Private (PPG)',
     'PPG, private creditors (NFL, US$)': 'Private Creditors (PPG)'
 }
+
+# Filter and rename
+filtered_df = df_externaldebt[df_externaldebt['IndicatorDescription'].isin(selected_indicators.keys())].copy()
+filtered_df['CreditorType'] = filtered_df['IndicatorDescription'].replace(selected_indicators)
 
 
 # Interactivity Controls
@@ -47,22 +52,6 @@ filtered_df = df_externaldebt[
     (df_externaldebt["Year"] >= selected_years[0]) &
     (df_externaldebt["Year"] <= selected_years[1])
 ]
-# Define and shorten indicator names
-selected_indicators = {
-    'PPG, official creditors (NFL, US$)': 'Official Creditors (PPG)',
-    'PPG, bonds (NFL, current US$)': 'Bonds (PPG)',
-    'PPG, commercial banks (NFL, current US$)': 'Commercial Banks (PPG)',
-    'Commercial banks and other lending (PPG + PNG) (NFL, current US$)': 'Banks & Lending (PPG+PNG)',
-    'PNG, bonds (NFL, current US$)': 'Bonds (PNG)',
-    'PNG, commercial banks and other creditors (NFL, current US$)': 'Banks & Creditors (PNG)',
-    'PPG, other private creditors (NFL, current US$)': 'Other Private (PPG)',
-    'PPG, private creditors (NFL, US$)': 'Private Creditors (PPG)'
-}
-
-# Filter and rename
-filtered_df = df_externaldebt[df_externaldebt['IndicatorDescription'].isin(selected_indicators.keys())].copy()
-filtered_df['CreditorType'] = filtered_df['IndicatorDescription'].replace(selected_indicators)
-
 
 # Pivot and normalize values per year
 pivot_df = filtered_df.pivot_table(
@@ -99,6 +88,7 @@ with st.container():
 with st.container():
     st.subheader("Trends Across Years")
     st.plotly_chart(fig2, use_container_width=True)
+
 
 
 
