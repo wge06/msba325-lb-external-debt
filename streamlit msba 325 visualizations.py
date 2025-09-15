@@ -28,15 +28,15 @@ selected_indicators = {
 
 
 # Interactivity Controls
-
+st.sidebar.header("🔎 Filters")
 # 1. Multi-select categories
-selected_cats = st.multiselect(
+selected_cats = st.sidebar.multiselect(
     "Filter by Creditor Type:", options=df_externaldebt['IndicatorDescription'], default=df_externaldebt['IndicatorDescription'].unique()
 )
 
 # 2. Year range slider
 year_min, year_max = int(df_externaldebt['Year'].min()), int(df_externaldebt['Year'].max())
-selected_years = st.slider(
+selected_years = st.sidebar.slider(
     "Select Year Range:", min_value=year_min, max_value=year_max,
     value=(year_min, year_max)
 )
@@ -99,6 +99,7 @@ with st.container():
 with st.container():
     st.subheader("Trends Across Years")
     st.plotly_chart(fig2, use_container_width=True)
+
 
 
 
