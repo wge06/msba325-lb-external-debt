@@ -91,23 +91,16 @@ fig2 = px.line(
 )
 
 # Layout on Streamlit Page
-col1, col2 = st.columns(2)
+row1, row2 = st.rows(2)
 
-with col1:
+with row1:
     st.subheader("Category Distributions")
     st.plotly_chart(fig1, use_container_width=True)
-    st.markdown("""
-    **Insight:** This chart highlights how values are spread within each category. 
-    Look for categories with wide boxes (high variability) versus tight ones (consistency).
-    """)
 
-with col2:
+with row2:
     st.subheader("Trends Across Years")
     st.plotly_chart(fig2, use_container_width=True)
-    st.markdown("""
-    **Insight:** This trend view helps reveal whether some categories are consistently 
-    growing, stable, or declining over time.
-    """)
+
 
 
 
