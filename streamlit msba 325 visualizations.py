@@ -60,7 +60,7 @@ selected_indicators = {
 }
 
 # Filter and rename
-# filtered_df = df_externaldebt[df_externaldebt['IndicatorDescription'].isin(selected_indicators.keys())].copy()
+filtered_df = df_externaldebt[df_externaldebt['IndicatorDescription'].isin(selected_indicators.keys())].copy()
 filtered_df['CreditorType'] = filtered_df['IndicatorDescription'].replace(selected_indicators)
 
 
@@ -108,6 +108,7 @@ with col2:
     **Insight:** This trend view helps reveal whether some categories are consistently 
     growing, stable, or declining over time.
     """)
+
 
 
 
