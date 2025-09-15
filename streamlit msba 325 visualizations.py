@@ -31,7 +31,7 @@ selected_indicators = {
 
 # 1. Multi-select categories
 selected_cats = st.multiselect(
-    "Filter by Creditor Type:", options=df_externaldebt[df_externaldebt['IndicatorDescription'].isin(selected_indicators)].unique().tolist(), default=df_externaldebt[df_externaldebt['IndicatorDescription'].isin(selected_indicators)].unique().tolist()
+    "Filter by Creditor Type:", options=df_externaldebt['IndicatorDescription'], default=df_externaldebt[df_externaldebt['IndicatorDescription'].isin(selected_indicators)].unique().tolist()
 )
 
 # 2. Year range slider
@@ -92,5 +92,6 @@ with col2:
     **Insight:** This trend view helps reveal whether some categories are consistently 
     growing, stable, or declining over time.
     """)
+
 
 
