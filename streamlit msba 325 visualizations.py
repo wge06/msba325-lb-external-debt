@@ -1,4 +1,4 @@
-aimport streamlit as st
+import streamlit as st
 import plotly.express as px
 import pandas as pd
 import json
@@ -92,4 +92,5 @@ with col2:
     **Insight:** This trend view helps reveal whether some categories are consistently 
     growing, stable, or declining over time.
     """)
+
 
