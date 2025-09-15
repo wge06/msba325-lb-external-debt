@@ -13,6 +13,8 @@ indicator_codes = df_externaldebt['Indicator Code'].unique()
 
 df_externaldebt['Year'] = df_externaldebt['refPeriod'].astype(int)
 
+df_externaldebt = df_externaldebt[df_externaldebt['Year']>=2000]
+
 years = sorted(df_externaldebt["Year"].unique())
 
 # Define and shorten indicator names
@@ -92,6 +94,7 @@ with st.container():
 with st.container():
     st.subheader("Debt Trends Across Years by Debt Type")
     st.plotly_chart(fig2, use_container_width=True)
+
 
 
 
