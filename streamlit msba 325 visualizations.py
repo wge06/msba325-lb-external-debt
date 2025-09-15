@@ -91,15 +91,15 @@ fig2 = px.line(
 )
 
 # Layout on Streamlit Page
-row1, row2 = st.rows(2)
 
-with row1:
+with st.container():
     st.subheader("Category Distributions")
     st.plotly_chart(fig1, use_container_width=True)
 
-with row2:
+with st.container():
     st.subheader("Trends Across Years")
     st.plotly_chart(fig2, use_container_width=True)
+
 
 
 
