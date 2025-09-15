@@ -47,6 +47,22 @@ filtered_df = df_externaldebt[
     (df_externaldebt["Year"] >= selected_years[0]) &
     (df_externaldebt["Year"] <= selected_years[1])
 ]
+# Define and shorten indicator names
+selected_indicators = {
+    'PPG, official creditors (NFL, US$)': 'Official Creditors (PPG)',
+    'PPG, bonds (NFL, current US$)': 'Bonds (PPG)',
+    'PPG, commercial banks (NFL, current US$)': 'Commercial Banks (PPG)',
+    'Commercial banks and other lending (PPG + PNG) (NFL, current US$)': 'Banks & Lending (PPG+PNG)',
+    'PNG, bonds (NFL, current US$)': 'Bonds (PNG)',
+    'PNG, commercial banks and other creditors (NFL, current US$)': 'Banks & Creditors (PNG)',
+    'PPG, other private creditors (NFL, current US$)': 'Other Private (PPG)',
+    'PPG, private creditors (NFL, US$)': 'Private Creditors (PPG)'
+}
+
+# Filter and rename
+# df_filtered = df_externaldebt[df_externaldebt['IndicatorDescription'].isin(selected_indicators.keys())].copy()
+df_filtered['CreditorType'] = df_filtered['IndicatorDescription'].replace(selected_indicators)
+
 
 # Pivot and normalize values per year
 pivot_df = filtered_df.pivot_table(
@@ -92,6 +108,7 @@ with col2:
     **Insight:** This trend view helps reveal whether some categories are consistently 
     growing, stable, or declining over time.
     """)
+
 
 
 
