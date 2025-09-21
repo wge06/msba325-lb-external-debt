@@ -66,6 +66,21 @@ pivot_df = filtered_df.pivot_table(
 pivot_df['TotalPerYear'] = pivot_df.groupby('Year')['Value (Millions)'].transform('sum')
 pivot_df['Share (%)'] = (pivot_df['Value (Millions)'] / pivot_df['TotalPerYear']) * 100
 
+# Make sure data is sorted
+pivot_df = pivot_df.sort_values(["CreditorType", "Year"])
+
+# Compute cumulative sum by creditor type
+pivot_df["CumulativeDebt"] = pivot_df.groupby("CreditorType")["Value (Millions)"].cumsum()
+
+# Plot cumulative debt
+fig2 = px.line(
+    pivot_df,
+    x="Year", y="CumulativeDebt", color="CreditorType",
+    markers=True,
+    title="Cumulative External Debt Over Time"
+)
+
+
 # Visualization 1: Stacked Bar Chart Across Years by Category
 fig1 = px.box(
     filtered_df,
@@ -78,13 +93,13 @@ fig1.update_traces(
     hovertemplate='Creditor: %{x}<br>Value: %{y:.2f}M'
 )
 
-# Visualization 2: Line Chart of Sum of Debt Across Years
-fig2 = px.line(
-    pivot_df,
-    x="Year", y="Value (Millions)", color="CreditorType",
-    markers=True,
-    title="Total External Debt Over Time"
-)
+# # Visualization 2: Line Chart of Sum of Debt Across Years
+# fig2 = px.line(
+#     pivot_df,
+#     x="Year", y="Value (Millions)", color="CreditorType",
+#     markers=True,
+#     title="Total External Debt Over Time"
+# )
 
 # Layout on Streamlit Page
 
@@ -95,6 +110,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Across Years by Debt Type")
     st.plotly_chart(fig2, use_container_width=True)
+
 
 
 
