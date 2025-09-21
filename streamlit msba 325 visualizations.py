@@ -74,11 +74,6 @@ pivot_df1 = pivot_df.sort_values(["CreditorType", "Year"])
 
 # Compute cumulative sum by creditor type
 pivot_df1["CumulativeDebt"] = pivot_df1.groupby("CreditorType")["Value (Millions)"].cumsum()
-pivot_df1['ABS Value'] = pivot_df['CumulativeDebt'].abs()
-pivot_df1['TotalPerYear'] = pivot_df1.groupby('Year')['ABS Value'].transform('sum')
-pivot_df1['Share (%)'] = (pivot_df1['CumulativeDebt'] / pivot_df1['TotalPerYear']) * 100
-pivot_df1['Share (%)'] = pivot_df1['Share (%)'].abs()
-
 
 # Plot cumulative debt
 fig2 = px.line(
@@ -142,6 +137,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Evolution by Debt Type")
     st.plotly_chart(fig3, use_container_width=True)
+
 
 
 
