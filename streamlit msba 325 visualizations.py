@@ -104,7 +104,7 @@ fig3 = px.line(
 # Layout on Streamlit Page
 
 with st.container():
-    st.subheader("Lebanon Gov. Debt Distributions by Creditor")
+    st.subheader("Lebanon Gov. Debt Distribution by Creditor Type")
     st.plotly_chart(fig1, use_container_width=True)
 
 with st.container():
@@ -114,6 +114,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Evolution by Debt Type")
     st.plotly_chart(fig3, use_container_width=True)
+
 
 
 
