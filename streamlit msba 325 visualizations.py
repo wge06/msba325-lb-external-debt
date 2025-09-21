@@ -94,13 +94,7 @@ fig1 = px.bar(
     text="Value"            # optional, shows values on bars
 )
 
-fig1.update_traces(texttemplate='%{text:.2s}', textposition='outside')
 fig1.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
-
-
-fig1.update_traces(
-    hovertemplate='Creditor: %{x}<br>Value: %{y:.2f}M'
-)
 
 # Visualization 2: Line Chart of Sum of Debt Across Years
 # fig3 = px.line(
@@ -143,6 +137,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Evolution by Debt Type")
     st.plotly_chart(fig3, use_container_width=True)
+
 
 
 
