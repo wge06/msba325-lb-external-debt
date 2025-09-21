@@ -36,16 +36,17 @@ filtered_df['CreditorType'] = filtered_df['IndicatorDescription'].replace(select
 
 # Interactivity Controls
 st.sidebar.header("🔎 Filters")
-# 1. Multi-select categories
-selected_cats = st.sidebar.multiselect(
-    "Filter by Creditor Type:", options=filtered_df['CreditorType'].unique(), default=filtered_df['CreditorType'].unique()
-)
 
-# 2. Year range slider
+# 1. Year range slider
 year_min, year_max = int(filtered_df['Year'].min()), int(filtered_df['Year'].max())
 selected_years = st.sidebar.slider(
     "Select Year Range:", min_value=year_min, max_value=year_max,
     value=(year_min, year_max)
+)
+
+# 2. Multi-select categories
+selected_cats = st.sidebar.multiselect(
+    "Filter by Creditor Type:", options=filtered_df['CreditorType'].unique(), default=filtered_df['CreditorType'].unique()
 )
 
 # Filter Data
@@ -94,6 +95,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Across Years by Debt Type")
     st.plotly_chart(fig2, use_container_width=True)
+
 
 
 
