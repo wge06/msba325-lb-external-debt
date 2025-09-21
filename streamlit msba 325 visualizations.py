@@ -105,7 +105,7 @@ fig3 = px.area(
     pivot_df,
     x="Year", y="Value (Millions)", color="CreditorType",
     title="Composition of External Debt Over Time",
-    groupnorm=""  # can normalize to percent if you want shares
+    groupnorm="percent"  # can normalize to percent if you want shares
 )
 
 
@@ -122,6 +122,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Evolution by Debt Type")
     st.plotly_chart(fig3, use_container_width=True)
+
 
 
 
