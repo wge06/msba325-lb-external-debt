@@ -93,13 +93,13 @@ fig1.update_traces(
     hovertemplate='Creditor: %{x}<br>Value: %{y:.2f}M'
 )
 
-# # Visualization 2: Line Chart of Sum of Debt Across Years
-# fig2 = px.line(
-#     pivot_df,
-#     x="Year", y="Value (Millions)", color="CreditorType",
-#     markers=True,
-#     title="Total External Debt Over Time"
-# )
+# Visualization 2: Line Chart of Sum of Debt Across Years
+fig3 = px.line(
+    pivot_df,
+    x="Year", y="Value (Millions)", color="CreditorType",
+    markers=True,
+    title="Total External Debt Over Time"
+)
 
 # Layout on Streamlit Page
 
@@ -108,8 +108,13 @@ with st.container():
     st.plotly_chart(fig1, use_container_width=True)
 
 with st.container():
-    st.subheader("Lebnanon Gov. Debt Trends Across Years by Debt Type")
+    st.subheader("Lebnanon Gov. Cumulative Debt Trends Across Years by Debt Type")
     st.plotly_chart(fig2, use_container_width=True)
+
+with st.container():
+    st.subheader("Lebnanon Gov. Debt Trends Evolution by Debt Type")
+    st.plotly_chart(fig3, use_container_width=True)
+
 
 
 
