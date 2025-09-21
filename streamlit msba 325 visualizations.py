@@ -63,8 +63,11 @@ pivot_df = filtered_df.pivot_table(
     aggfunc='sum'
 ).reset_index()
 
-pivot_df['TotalPerYear'] = pivot_df.groupby('Year')['Value (Millions)'].transform('sum')
+
+pivot_df['ABS Value'] = pivot_df['Value (Millions)'].abs()
+pivot_df['TotalPerYear'] = pivot_df.groupby('Year')['ABS Value'].transform('sum')
 pivot_df['Share (%)'] = (pivot_df['Value (Millions)'] / pivot_df['TotalPerYear']) * 100
+pivot_df['Share (%)'] = pivot_df['Share (%)'].abs()
 
 # Make sure data is sorted
 pivot_df1 = pivot_df.sort_values(["CreditorType", "Year"])
@@ -134,6 +137,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Evolution by Debt Type")
     st.plotly_chart(fig3, use_container_width=True)
+
 
 
 
