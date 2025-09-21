@@ -94,12 +94,20 @@ fig1.update_traces(
 )
 
 # Visualization 2: Line Chart of Sum of Debt Across Years
-fig3 = px.line(
+# fig3 = px.line(
+#     pivot_df,
+#     x="Year", y="Value (Millions)", color="CreditorType",
+#     markers=True,
+#     title="Total External Debt Over Time"
+# )
+
+fig3 = px.area(
     pivot_df,
     x="Year", y="Value (Millions)", color="CreditorType",
-    markers=True,
-    title="Total External Debt Over Time"
+    title="Composition of External Debt Over Time",
+    groupnorm=""  # can normalize to percent if you want shares
 )
+
 
 # Layout on Streamlit Page
 
@@ -114,6 +122,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Evolution by Debt Type")
     st.plotly_chart(fig3, use_container_width=True)
+
 
 
 
