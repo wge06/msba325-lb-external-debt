@@ -108,7 +108,6 @@ fig3 = px.bar(
     color="CreditorType",
     title="Total External Debt Over Time (Normalized to 100%)",
     barmode="stack",
-    groupnorm="percent"  # This makes it a 100% stacked bar chart
 )
 
 
@@ -133,6 +132,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Evolution by Debt Type")
     st.plotly_chart(fig3, use_container_width=True)
+
 
 
 
