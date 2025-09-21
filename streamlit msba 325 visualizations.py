@@ -86,8 +86,8 @@ fig2 = px.line(
 
 # Visualization 1: Stacked Bar Chart Across Years by Category
 fig1 = px.bar(
-    pivot_df1,
-    x="CreditorType", y="CumulativeDebt", color="CreditorType",
+    pivot_df,
+    x="CreditorType", y="Value (Millions)", color="CreditorType",
     title="Value Distribution by Creditor Type",
     labels={"IndicatorDescription": "Creditor Type","Year":"Year", "Value (Millions)": "Value (in Millions USD)"}
 )
@@ -137,6 +137,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Evolution by Debt Type")
     st.plotly_chart(fig3, use_container_width=True)
+
 
 
 
