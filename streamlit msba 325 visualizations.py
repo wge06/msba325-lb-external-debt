@@ -115,8 +115,7 @@ fig3 = px.bar(
     color="CreditorType",
     title="Total Cum. Debt Over Time Share %",
     barmode="stack",
-    text_auto=".1f%%",   # show percentages with 1 decimal place
-    barnorm="percent" 
+    text_auto=".1f%%",   # show percentages with 1 decimal place 
 )
 fig3.update_layout(
     yaxis_title="Share (%)",
@@ -148,6 +147,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Evolution by Debt Type")
     st.plotly_chart(fig3, use_container_width=True)
+
 
 
 
