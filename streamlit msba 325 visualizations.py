@@ -83,14 +83,20 @@ fig2 = px.line(
     title="Cumulative External Debt Over Time"
 )
 
+df_grouped = filtered_df.groupby("CreditorType", as_index=False)["Value"].sum()
 
 # Visualization 1: Stacked Bar Chart Across Years by Category
 fig1 = px.bar(
-    pivot_df,
-    x="CreditorType", y="Value (Millions)", color="CreditorType",
-    title="Value Distribution by Creditor Type",
-    labels={"IndicatorDescription": "Creditor Type","Year":"Year", "Value (Millions)": "Value (in Millions USD)"}
+    df_grouped,
+    x="CreditorType",
+    y="Value",
+    color="CreditorType",   # optional, just for coloring
+    text="Value"            # optional, shows values on bars
 )
+
+fig1.update_traces(texttemplate='%{text:.2s}', textposition='outside')
+fig1.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
+
 
 fig1.update_traces(
     hovertemplate='Creditor: %{x}<br>Value: %{y:.2f}M'
@@ -137,6 +143,7 @@ with st.container():
 with st.container():
     st.subheader("Lebnanon Gov. Debt Trends Evolution by Debt Type")
     st.plotly_chart(fig3, use_container_width=True)
+
 
 
 
